@@ -1,0 +1,19 @@
+[Unit]
+Description=Scalping Trading Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/bot-scalping
+ExecStart=/usr/bin/python3 -m src.app --exchange binance --market futures
+Restart=on-failure
+RestartSec=5
+User=trader
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+
+

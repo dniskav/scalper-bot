@@ -1,0 +1,9 @@
+from __future__ import annotations
+
+from typing import Protocol, Dict, Any
+
+
+class StoragePort(Protocol):
+    def append_trade(self, row: Dict[str, Any]) -> None: ...
+    def write_state(self, row: Dict[str, Any]) -> None: ...
+    def read_state(self) -> Dict[str, Any] | None: ...

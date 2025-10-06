@@ -1,0 +1,20 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environment
+.venv/
+
+# Local data/logs
+logs/
+data/*
+!data/.gitkeep
+
+# IDE/editor
+.vscode/
+.idea/
+.DS_Store
+
+# Secrets
+config/api_keys.txt

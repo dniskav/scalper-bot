@@ -1,0 +1,29 @@
+timeframe=5m
+rr=1.5
+filter_weak_signal=true
+weak_body_ratio_max=0.25
+range_cross_ema_count=3
+sessions_filter=true
+sessions_timezone=Europe/Madrid
+sessions_allowed=08:00-17:00,14:00-22:00
+position_mode=usdt_value
+reduce_only_on_exit=true
+max_retries=5
+pairs_source=exchange
+pairs_file=config/pairs.txt
+spread_max_pct=0.08
+slippage_pct=0.02
+# --- Break-even ---
+breakeven_enabled=true
+breakeven_trigger_rr=1.0
+breakeven_offset_ticks=0
+breakeven_offset_pct=0.02
+# --- Trailing ---
+trailing_enabled=true
+trailing_mode=percent
+trailing_percent=0.5
+trailing_step_pct=0.1
+atr_period=14
+atr_multiplier=2.0
+# --- TP ---
+take_profit_mode=fixed
