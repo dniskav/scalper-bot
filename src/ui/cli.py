@@ -615,9 +615,8 @@ def tele_poll() -> None:
                                 "--exchange", "bybit",
                                 "--market", "futures",
                                 "--mode", mode_to_start,
-                                "--symbol", "ETHUSDT",
+                                "--symbol", "BTCUSDT",
                                 "--size", "10",
-                                "--leverage", "20",
                             ]
                             # Capturar salida del launcher para diagnosticar problemas de arranque
                             (Path("logs")).mkdir(parents=True, exist_ok=True)

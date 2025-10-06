@@ -89,11 +89,12 @@ class BotRunner:
             )
         except Exception:
             pass
-        if leverage and market == "futures" and (not self.dry_run) and (api_key and api_secret):
-            try:
-                self.exchange.set_leverage(symbol, leverage)
-            except Exception as e:
-                logger.warning("Set leverage failed: {}", e)
+        # Skip leverage setting for testnet to avoid API errors
+        # if leverage and market == "futures" and (not self.dry_run) and (api_key and api_secret):
+        #     try:
+        #         self.exchange.set_leverage(symbol, leverage)
+        #     except Exception as e:
+        #         logger.warning("Set leverage failed: {}", e)
 
         # Selección de market data por exchange
         if self.exchange_name == "bybit":
@@ -218,6 +219,11 @@ class BotRunner:
                             pass
                 except Exception as e:
                     logger.warning("Fallo al colocar SL/TP reduceOnly: {}", e)
+            # Log detailed position opening
+            logger.info(
+                "OPEN | side={} symbol={} entry={} qty={} sl={} tp={} rr={} reason={}",
+                sig.side, self.symbol, sig.entry, qty, sl, tp, sig.rr, sig.reason
+            )
             # Notify
             side_emoji = "🟢 Long" if sig.side == "long" else "🔴 Short"
             msg = (
@@ -384,6 +390,11 @@ class BotRunner:
                     self.exchange.cancel_all_open_orders(self.symbol)
                 except Exception as e:
                     logger.error("Close order failed: {}", e)
+            # Log detailed position closing
+            logger.info(
+                "CLOSE | side={} symbol={} entry={} exit={} qty={} pnl={} reason={}",
+                self.position_side, self.symbol, self.position_entry, px, self.position_qty, pnl_abs, reason
+            )
             # notificar y persistir
             side_txt = "Long" if self.position_side == "long" else "Short"
             reason_emoji = "✅ TP" if reason == "tp" else "🛑 SL"

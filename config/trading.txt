@@ -11,7 +11,7 @@ reduce_only_on_exit=true
 max_retries=5
 pairs_source=exchange
 pairs_file=config/pairs.txt
-spread_max_pct=0.08
+spread_max_pct=0.30
 slippage_pct=0.02
 # --- Break-even ---
 breakeven_enabled=true
